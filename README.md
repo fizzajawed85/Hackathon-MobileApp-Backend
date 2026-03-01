@@ -94,14 +94,18 @@ backend/
    ```
 
 2. **Environment Configuration** (`.env`):
+   Create a `.env` file in the root backend directory:
    ```bash
    PORT=5000
    MONGO_URI=your_mongodb_atlas_uri
    JWT_SECRET=your_secure_random_key
    GEMINI_API_KEY=your_google_ai_key
-   EMAIL_HOST=smtp.gmail.com
-   EMAIL_USER=your_email
-   EMAIL_PASS=your_app_password
+
+   # 📧 Email & OTP Configuration (Nodemailer)
+   EMAIL_HOST=smtp.gmail.com   # e.g., smtp.gmail.com
+   EMAIL_PORT=587              # 587 for TLS, 465 for SSL
+   EMAIL_USER=your_email       # SMTP login email
+   EMAIL_PASS=your_password    # SMTP app-specific password
    ```
 
 3. **Execution**:
