@@ -35,7 +35,7 @@ This backend exists to provide a secure, scalable, and intelligent infrastructur
 - **Dual-Mode Intelligence**:
   - **AI Base Mode**: Provides expert medical guidance, symptom analysis, and drug information.
   - **Personal Mode**: Interacts with the user's data to check appointments, history, and medical records.
-- **🖼️ Image & Report Analysis**:
+- **Image & Report Analysis**:
   - Users can upload their medical **lab reports, prescriptions, or scan images** directly into the chat.
   - The AI analyzes the uploaded image and provides a detailed interpretation of the results.
   - Supports reading and summarizing medical documents in natural language.
