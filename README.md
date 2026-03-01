@@ -32,6 +32,9 @@ This backend exists to provide a secure, scalable, and intelligent infrastructur
 
 ## 🤖 MedBot AI (Medical Assistant)
 - **Real Artificial Intelligence**: Powered by **Google Gemini 2.5 Flash API**.
+- **Dual-Mode Intelligence**:
+  - **AI Base Mode**: Provides expert medical guidance, symptom analysis, and drug information.
+  - **Personal Mode**: Interacts with the user's data to check appointments, history, and medical records.
 - **System Intelligence**:
   - Empathy-first communication profile.
   - Specialist suggestion engine (analyzes symptoms and suggests specific doctor types).
@@ -58,7 +61,8 @@ This backend exists to provide a secure, scalable, and intelligent infrastructur
 - **Enriched Health Profile**:
   - **Extended Data**: Stores PhoneNumber, Location, and Bio ("About").
   - **Dynamic Patient ID**: Unique ID generation for medical identification.
-  - **Health Vitals Dashboard**: Aggregates real-time stats for **Heart Rate**, **Blood Pressure**, **Steps**, and **Sleep Quality**.
+  - **Health Vitals Dashboard**: Aggregates real-time stats for **Steps** and **Sleep Quality**.
+  - **💓 Demo Vitals Tracking**: Includes tech demos for **Heart Rate** and **Blood Pressure (BP)** monitoring.
 - **Image Management**: Support for profile photo updates with secure storage integration.
 
 ---
