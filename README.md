@@ -11,12 +11,12 @@ A robust and secure RESTful API built with **Node.js**, **Express**, and **Mongo
 
 ### 📅 Medical Management API
 - **Appointments API**:
-  - `GET /api/medical/appointments`: Fetch user appointment history.
+  - `GET /api/medical/appointments`: Fetch user appointment history with **persistent storage**.
   - `POST /api/medical/appointments`: Book new appointments with specialist validation.
   - `DELETE /api/medical/appointments/:id`: Cancel upcoming visits.
 - **Medical Records API**:
   - `GET /api/medical/records`: Retrieve lab reports and prescriptions.
-  - `POST /api/medical/records`: Support for records with image/PDF attachments (Base64 storage for hackathon prototype).
+  - `POST /api/medical/records`: Support for records with image/PDF attachments (Advanced Base64 storage).
   - `DELETE /api/medical/records/:id`: Remove outdated records.
 
 ### 👤 Profile Enrichment
