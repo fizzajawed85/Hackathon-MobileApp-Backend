@@ -1,65 +1,110 @@
-# ⚙️ Medical App Backend (Node.js API)
+# ⚙️ Medical App Backend (Full API Documentation)
 
-A robust and secure RESTful API built with **Node.js**, **Express**, and **MongoDB**. This backend serves as the core infrastructure for the Medical Appointment & Records Management System.
+A production-ready healthcare management API built on the **MERN (MongoDB, Express, React Native, Node)** stack. This backend serves as the secure backbone for the Medical Appointment & Records Management System, handling everything from AI-driven consultations to complex medical data persistence.
 
-## 🚀 Advanced Backend Features
+## 🚀 Repository Purpose
+This backend exists to provide a secure, scalable, and intelligent infrastructure for healthcare management. It bridges the gap between raw medical data and a premium mobile experience through advanced AI and robust security protocols.
 
-### 🤖 MedBot AI (Real Artificial Intelligence)
-- **Engine**: Powered by **Google Gemini 2.5 Flash** for high-speed, accurate medical guidance.
-- **Expertise**: Provides specialist recommendations based on symptoms, analyzes drug information, and explains medical terms.
-- **Safety**: Includes built-in system instructions for professional disclaimers and empathetic responses.
-- **Endpoint**: `POST /api/ai/chat` for real-time interactive health assistance.
+---
 
-### 🔔 Smart Notification System
-- **Real-time Alerts**: Automatically generates notifications for appointment bookings, cancellations, and medical record updates.
-- **Management**: User endpoints to fetch all notifications, mark individual alerts as read, or clear all notifications.
-- **Endpoints**: `GET /api/notifications`, `PATCH /api/notifications/:id`.
+## 🛠️ Core Technology Stack
+- **Node.js & Express**: High-performance runtime and framework for the RESTful API.
+- **MongoDB & Mongoose**: NoSQL database for flexible medical record storage and user data modeling.
+- **Google Gemini 2.5 Flash**: Real-time AI engine for the MedBot assistant.
+- **JWT (JSON Web Tokens)**: Secure, stateless authentication for mobile-backend communication.
+- **Bcrypt.js**: Industry-standard hashing for secure password storage.
+- **Nodemailer/SendGrid**: Automated email system for OTP (One-Time Password) delivery.
 
-### 📊 Dashboard & Health Analytics
-- **Aggregation**: Unified endpoint to fetch user profile, the nearest upcoming appointment, and health vital snapshots.
-- **Vitals Integration**: Pre-calculates and serves data for **Heart Rate**, **Blood Pressure**, **Daily Steps**, and **Sleep Quality** trends.
-- **Medication Tracking**: Serves current medication schedules and dosages.
-- **Endpoint**: `GET /api/dashboard`.
+---
 
-### 📅 Medical Management API
-- **Appointments API**:
-  - `GET /api/medical/appointments`: Fetch user appointment history with **persistent storage**.
-  - `POST /api/medical/appointments`: Book new appointments with specialist validation.
-  - `DELETE /api/medical/appointments/:id`: Cancel upcoming visits and trigger notifications.
-- **Medical Records API**:
-  - `GET /api/medical/records`: Retrieve lab reports and prescriptions.
-  - `POST /api/medical/records`: Support for records with image/PDF attachments (Advanced Base64 storage).
-  - `DELETE /api/medical/records/:id`: Remove outdated records.
+## 🔑 Advanced Security & Authentication
+- **JWT Authentication System**:
+  - Secure login/registration producing cross-platform compatible tokens.
+  - Custom middleware for protected route access.
+  - Stateless architecture allowing for seamless app reloads.
+- **3-Phase Password Recovery**:
+  - **Phase 1 (Forgot)**: Email-based validation with unique OTP generation.
+  - **Phase 2 (Verify)**: Server-side OTP validation with expiration logic.
+  - **Phase 3 (Reset)**: Secure password update with Bcrypt hashing.
+- **CORS Management**: Configured for secure cross-origin requests from both mobile and web clients.
 
-### 👤 Profile Enrichment
-- **Extended User Model**: Supports `phoneNumber`, `location`, `about`, and `profileImage`.
-- **Dynamic Updates**: Full support for updating personal information and profile photos via `PATCH /api/user/profile`.
+---
 
-## 🛠️ Tech Stack
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB (Mongoose ODM)
-- **AI Integration**: Google Generative AI (Gemini)
-- **Auth**: Passport.js & JWT
-- **Email**: SendGrid/Nodemailer (OTP Delivery)
+## 🤖 MedBot AI (Medical Assistant)
+- **Real Artificial Intelligence**: Powered by **Google Gemini 2.5 Flash API**.
+- **System Intelligence**:
+  - Empathy-first communication profile.
+  - Specialist suggestion engine (analyzes symptoms and suggests specific doctor types).
+  - Medical terminology explanation and drug information processing.
+- **Compliance**: Automatic injection of professional medical disclaimers in every AI response.
+
+---
+
+## 📅 Medical Management Systems
+- **Intelligent Appointment Booking**:
+  - Dynamic specialist selection and availability checking.
+  - Real-time booking with **Automatic Notification Triggers**.
+  - **Persistent History Log**: Every appointment remains in the DB with status tracking (Pending, Confirmed, Cancelled).
+- **Medical Records Vault**:
+  - Secure storage for Lab Reports, Prescriptions, and Scans.
+  - **Attachment Support**: Advanced Base64 handling for mobile image/PDF uploads.
+  - **Metadata Management**: Categorization by doctors, dates, and record types.
+- **History & Records Persistence**:
+  - Guaranteed data retention—records never disappear; they are archived for future reference.
+
+---
+
+## 👤 User Profile & Health Statistics
+- **Enriched Health Profile**:
+  - **Extended Data**: Stores PhoneNumber, Location, and Bio ("About").
+  - **Dynamic Patient ID**: Unique ID generation for medical identification.
+  - **Health Vitals Dashboard**: Aggregates real-time stats for **Heart Rate**, **Blood Pressure**, **Steps**, and **Sleep Quality**.
+- **Image Management**: Support for profile photo updates with secure storage integration.
+
+---
+
+## 🔔 Notification & Dashboard Engine
+- **Dashboard Aggregator**: 
+  - A single, high-performance endpoint to serve user profile, vital signs, medication schedules, and the nearest upcoming appointment.
+- **Notification System**:
+  - Context-aware alerts for all account activities.
+  - Management API: Fetch, Mark as Read (single or all).
+
+---
+
+## 📁 Directory Architecture
+```
+backend/
+├── controllers/      # Business logic (AI, Auth, Appointments, etc.)
+├── models/           # Mongoose schemas (User, Record, Notification, Doctor)
+├── routes/           # API Endpoints
+├── middleware/       # JWT and Security checks
+├── utils/            # Helper functions (Emailing, OTP generation)
+└── server.js         # Entry point & DB configuration
+```
+
+---
 
 ## 📦 Setup & Installation
 
-1. **Install Dependencies**:
+1. **Clone & Install**:
    ```bash
+   cd backend
    npm install
    ```
 
-2. **Environment Configuration**:
-   Create a `.env` file in the root backend directory:
-   ```env
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_secret_key
-   GEMINI_API_KEY=your_google_gemini_api_key
+2. **Environment Configuration** (`.env`):
+   ```bash
    PORT=5000
+   MONGO_URI=your_mongodb_atlas_uri
+   JWT_SECRET=your_secure_random_key
+   GEMINI_API_KEY=your_google_ai_key
+   EMAIL_HOST=smtp.gmail.com
+   EMAIL_USER=your_email
+   EMAIL_PASS=your_app_password
    ```
 
-3. **Start the Server**:
+3. **Execution**:
    ```bash
    npm run dev
    ```
