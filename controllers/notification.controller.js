@@ -20,8 +20,8 @@ exports.markAsRead = async (req, res) => {
             return res.status(403).json({ message: 'Unauthorized' });
         }
 
-        notification.read = true;
-        await Notification.update(req.params.id, notification);
+        notification.isRead = true;
+        await notification.save();
         res.status(200).json(notification);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -30,11 +30,10 @@ exports.markAsRead = async (req, res) => {
 
 exports.markAllRead = async (req, res) => {
     try {
-        const notifications = await Notification.find({ userId: req.userId, read: false });
-        for (let n of notifications) {
-            n.read = true;
-            await Notification.update(n.id, n);
-        }
+        await Notification.updateMany(
+            { userId: req.userId, isRead: false },
+            { isRead: true }
+        );
         res.status(200).json({ message: 'All notifications marked as read' });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -48,8 +47,7 @@ exports.createNotification = async (userId, title, message, type) => {
             title,
             message,
             type, // 'appointment', 'record', 'general'
-            read: false,
-            createdAt: new Date().toISOString()
+            isRead: false
         });
     } catch (err) {
         console.error('Error creating notification:', err.message);

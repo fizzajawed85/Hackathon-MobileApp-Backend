@@ -1,0 +1,32 @@
+[dotenv@17.3.1] injecting env (7) from .env -- tip: ???? agentic secret storage: https://dotenvx.com/as2
+--- DB DIAGNOSTIC START ---
+1. Checking Environment Variable...
+??? MONGO_URI found
+2. Testing DNS resolution for host: cluster0.nhcgfb7.mongodb.net...
+3. Testing TCP Connection to Port 27017...
+node : ??? TCP Connection Failed. Port 27017 is 
+likely blocked by your ISP/Firewall. getaddrinfo 
+ENOTFOUND 
+cluster0-shard-00-00.nhcgfb7.mongodb.net
+At line:1 char:1
++ node diagnose-db.js > diag_v2.log 2>&1; 
+Get-Content diag_v2.log | Out ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (??? 
+    TCP Connect...fb7.mongodb.net:String) [], R  
+  emoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+??? DNS Lookup Failed. This usually means your 
+local network is blocking the connection or the 
+host is invalid. getaddrinfo ENOTFOUND 
+cluster0.nhcgfb7.mongodb.net
+4. Attempting Mongoose Connection (5s timeout)...
+??? Connection Failed Error Details:
+   Name: Error
+   Message: querySrv ECONNREFUSED 
+_mongodb._tcp.cluster0.nhcgfb7.mongodb.net
+
+--- POTENTIAL CAUSE ---
+???? NETWORK/DNS ISSUE: Even with 0.0.0.0/0, your network might be blocking MongoDB ports or SRV records.
+Try a different internet connection (Mobile Data) if possible.

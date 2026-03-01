@@ -1,0 +1,13 @@
+[dotenv@17.3.1] injecting env (0) from backend\.env -- tip: ??????  load multiple .env files with { path: ['.env.local', '.env'] }
+--- DB DIAGNOSTIC START ---
+1. Checking Environment Variable...
+node : ??? MONGO_URI is not defined in .env
+At line:1 char:1
++ node diagnose-db.js > diag_final.log 2>&1; 
+Get-Content diag_final.log ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (??? 
+    MONGO_URI is not defined in .env:String) []  
+  , RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

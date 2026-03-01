@@ -6,25 +6,29 @@ const DEFAULT_DOCTOR_IMAGE =
     'https://images.unsplash.com/photo-1559839734-2b71f1e3c77d?q=80&w=150&auto=format&fit=crop';
 
 const DOCTORS_SEED = [
-    { _id: '5zuws8dnpmlw0acvg', name: 'Dr. Ahmed Raza', specialty: 'Cardiologist', imageUrl: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '09:00' }, { day: 'Monday', time: '10:00' }, { day: 'Wednesday', time: '14:00' }] },
-    { _id: 'yde5p7djvmlw0acvg', name: 'Dr. Sara Khan', specialty: 'Dermatologist', imageUrl: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Tuesday', time: '11:00' }, { day: 'Thursday', time: '09:00' }] },
-    { _id: 'j5ig5bof6mlw0acvg', name: 'Dr. Usman Ali', specialty: 'Neurologist', imageUrl: 'https://images.unsplash.com/photo-1582750433449-64c6dc6ff9a9?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '13:00' }, { day: 'Friday', time: '10:00' }] },
-    { _id: '4posifn38mlw0acvg', name: 'Dr. Nadia Siddiqui', specialty: 'Gynecologist', imageUrl: 'https://images.unsplash.com/photo-1559839734-2b71f1e3c77d?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Wednesday', time: '09:00' }, { day: 'Friday', time: '14:00' }] },
-    { _id: '02iuf5yzmmlw0acvg', name: 'Dr. Bilal Hassan', specialty: 'Orthopedic', imageUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Tuesday', time: '10:00' }, { day: 'Saturday', time: '09:00' }] },
-    { _id: 'qo4rkp41nmlw0acvg', name: 'Dr. Hina Malik', specialty: 'Pediatrician', imageUrl: 'https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '15:00' }, { day: 'Thursday', time: '11:00' }] },
-    { _id: '6emsu3kxpmlw0acvg', name: 'Dr. Faisal Qureshi', specialty: 'General Physician', imageUrl: 'https://images.unsplash.com/photo-1612531388300-1c05d7cb6a08?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '08:00' }, { day: 'Tuesday', time: '08:00' }, { day: 'Wednesday', time: '08:00' }] },
-    { _id: 'k8j9l0m1n2o3p4q5r', name: 'Dr. Zainab Abidi', specialty: 'Optometrist', imageUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '11:00' }, { day: 'Wednesday', time: '11:00' }] },
-    { _id: 's6t7u8v9w0x1y2z3a', name: 'Dr. Kamran Akmal', specialty: 'Dentist', imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Tuesday', time: '02:00' }, { day: 'Thursday', time: '02:00' }] },
-    { _id: 'b4c5d6e7f8g9h0i1j', name: 'Dr. Maria B', specialty: 'Psychiatrist', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Wednesday', time: '03:00' }, { day: 'Friday', time: '03:00' }] },
-    { _id: 'l2m3n4o5p6q7r8s9t', name: 'Dr. Omer Saeed', specialty: 'Radiologist', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Monday', time: '10:00' }, { day: 'Wednesday', time: '10:00' }] },
-    { _id: 'u0v1w2x3y4z5a6b7c', name: 'Dr. Fatima Jinnah', specialty: 'Oncologist', imageUrl: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop', availableSlots: [{ day: 'Tuesday', time: '09:00' }, { day: 'Friday', time: '09:00' }] },
+    { name: 'Dr. Ahmed Raza', specialty: 'Cardiologist', imageUrl: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '09:00' }, { day: 'Monday', time: '10:00' }, { day: 'Wednesday', time: '14:00' }] },
+    { name: 'Dr. Sara Khan', specialty: 'Dermatologist', imageUrl: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Tuesday', time: '11:00' }, { day: 'Thursday', time: '09:00' }] },
+    { name: 'Dr. Usman Ali', specialty: 'Neurologist', imageUrl: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '13:00' }, { day: 'Friday', time: '10:00' }] },
+    { name: 'Dr. Nadia Siddiqui', specialty: 'Gynecologist', imageUrl: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Wednesday', time: '09:00' }, { day: 'Friday', time: '14:00' }] },
+    { name: 'Dr. Bilal Hassan', specialty: 'Orthopedic', imageUrl: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Tuesday', time: '10:00' }, { day: 'Saturday', time: '09:00' }] },
+    { name: 'Dr. Hina Malik', specialty: 'Pediatrician', imageUrl: 'https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '15:00' }, { day: 'Thursday', time: '11:00' }] },
+    { name: 'Dr. Faisal Qureshi', specialty: 'General Physician', imageUrl: 'https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '08:00' }, { day: 'Tuesday', time: '08:00' }, { day: 'Wednesday', time: '08:00' }] },
+    { name: 'Dr. Zainab Abidi', specialty: 'Optometrist', imageUrl: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '11:00' }, { day: 'Wednesday', time: '11:00' }] },
+    { name: 'Dr. Kamran Akmal', specialty: 'Dentist', imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Tuesday', time: '02:00' }, { day: 'Thursday', time: '02:00' }] },
+    { name: 'Dr. Maria B', specialty: 'Psychiatrist', imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Wednesday', time: '03:00' }, { day: 'Friday', time: '03:00' }] },
+    { name: 'Dr. Omer Saeed', specialty: 'Radiologist', imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Monday', time: '10:00' }, { day: 'Wednesday', time: '10:00' }] },
+    { name: 'Dr. Fatima Jinnah', specialty: 'Oncologist', imageUrl: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop&crop=faces', availableSlots: [{ day: 'Tuesday', time: '09:00' }, { day: 'Friday', time: '09:00' }] },
 ];
 
 const seedDoctors = async () => {
-    const count = await Doctor.countDocuments();
-    if (count < DOCTORS_SEED.length) {
-        await Doctor.deleteMany({});
-        await Doctor.insertMany(DOCTORS_SEED);
+    try {
+        const count = await Doctor.countDocuments();
+        if (count === 0) {
+            await Doctor.insertMany(DOCTORS_SEED);
+            console.log('✅ Doctors seeded successfully');
+        }
+    } catch (err) {
+        console.error('Seed Doctors Error:', err);
     }
 };
 
@@ -36,22 +40,86 @@ const resolveDoctorImageUrl = async (doctorName, doctorImageUrl) => {
 
 const isActiveStatusFilter = { $nin: ['Cancelled'] };
 
+/**
+ * Helper to check if an appointment time has already passed.
+ * @param {string} dateStr - YYYY-MM-DD
+ * @param {string} timeStr - HH:MM AM/PM
+ */
+const isTimePast = (dateStr, timeStr) => {
+    const now = new Date();
+    // Local-aware date string (YYYY-MM-DD)
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+    if (dateStr < todayStr) return true;
+    if (dateStr > todayStr) return false;
+
+    // If same day, check time
+    try {
+        const [time, modifier] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+
+        if (modifier === 'PM' && hours < 12) hours += 12;
+        if (modifier === 'AM' && hours === 12) hours = 0;
+
+        const appointmentTime = new Date();
+        appointmentTime.setHours(hours, minutes, 0, 0);
+
+        return now > appointmentTime;
+    } catch (err) {
+        console.error('Error parsing time in isTimePast:', err);
+        return false;
+    }
+};
+
+/**
+ * Helper to convert "HH:MM AM/PM" to minutes from midnight for sorting.
+ */
+const timeToMinutes = (timeStr) => {
+    try {
+        const [time, modifier] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+        if (modifier === 'PM' && hours < 12) hours += 12;
+        if (modifier === 'AM' && hours === 12) hours = 0;
+        return hours * 60 + minutes;
+    } catch { return 0; }
+};
+
 const resolveDoctorImages = async (appointments) => {
     try {
-        const resolved = [];
-        for (let appt of appointments) {
+        if (!appointments || appointments.length === 0) return appointments;
+
+        // Get unique doctor names that don't have images yet
+        const doctorNames = [...new Set(appointments
+            .filter(a => !a.doctorImageUrl)
+            .map(a => a.doctorName))];
+
+        if (doctorNames.length === 0) return appointments;
+
+        // Bulk fetch doctors
+        const doctors = await Doctor.find({ name: { $in: doctorNames } }).select('name imageUrl');
+        const doctorMap = doctors.reduce((acc, doc) => {
+            acc[doc.name] = doc.imageUrl;
+            return acc;
+        }, {});
+
+        // Map images back to appointments
+        return appointments.map(appt => {
             const apptObj = typeof appt.toObject === 'function' ? appt.toObject() : { ...appt };
-            if (!apptObj.doctorImageUrl) {
-                const doctor = await Doctor.findOne({ name: apptObj.doctorName });
-                if (doctor && doctor.imageUrl) {
-                    apptObj.doctorImageUrl = doctor.imageUrl;
-                }
+            if (!apptObj.doctorImageUrl && doctorMap[apptObj.doctorName]) {
+                apptObj.doctorImageUrl = doctorMap[apptObj.doctorName];
             }
-            resolved.push(apptObj);
-        }
-        return resolved;
+            // Fallback for missing image
+            if (!apptObj.doctorImageUrl) {
+                apptObj.doctorImageUrl = DEFAULT_DOCTOR_IMAGE;
+            }
+            return apptObj;
+        });
     } catch (err) {
-        console.error('Error resolving doctor images:', err);
+        console.error('Error resolving doctor images bulk:', err);
         return appointments;
     }
 };
@@ -191,10 +259,20 @@ exports.getUpcoming = async (req, res) => {
             userId: req.userId,
             date: { $gte: today },
             status: isActiveStatusFilter,
-        }).sort({ date: 1, time: 1 });
+        });
 
         const resolved = await resolveDoctorImages(appointments);
-        return res.json({ appointments: resolved });
+
+        // Filter out appointments where time has passed today
+        const filtered = resolved.filter(appt => !isTimePast(appt.date, appt.time));
+
+        // Accurate Chronological Sort
+        filtered.sort((a, b) => {
+            if (a.date !== b.date) return a.date.localeCompare(b.date);
+            return timeToMinutes(a.time) - timeToMinutes(b.time);
+        });
+
+        return res.json({ appointments: filtered });
     } catch (error) {
         console.error('GET UPCOMING ERROR:', error);
         return res.status(500).json({ message: 'Server Error', error: error.message });
@@ -204,25 +282,30 @@ exports.getUpcoming = async (req, res) => {
 // GET /api/appointments/history
 exports.getHistory = async (req, res) => {
     try {
-        const today = new Date().toISOString().split('T')[0];
         const appointments = await Appointment.find({
             userId: req.userId,
-            $or: [
-                { date: { $lt: today } },
-                { status: 'Cancelled' },
-            ],
+            status: { $in: ['Confirmed', 'Cancelled', 'Completed'] }, // Include all for history check
         }).sort({ date: -1, time: -1 });
 
         const resolved = await resolveDoctorImages(appointments);
 
-        const updated = resolved.map((appt) => {
-            if (appt.date < today && appt.status === 'Confirmed') {
+        const history = resolved.filter(appt => {
+            if (appt.status === 'Cancelled' || appt.status === 'Completed') return true;
+            return isTimePast(appt.date, appt.time);
+        }).map(appt => {
+            if (appt.status === 'Confirmed') {
                 appt.status = 'Completed';
             }
             return appt;
         });
 
-        return res.json({ appointments: updated });
+        // Current to Oldest
+        history.sort((a, b) => {
+            if (a.date !== b.date) return b.date.localeCompare(a.date);
+            return timeToMinutes(b.time) - timeToMinutes(a.time);
+        });
+
+        return res.json({ appointments: history });
     } catch (error) {
         console.error('GET HISTORY ERROR:', error);
         return res.status(500).json({ message: 'Server Error', error: error.message });
@@ -256,16 +339,19 @@ exports.cancelAppointment = async (req, res) => {
 // GET /api/appointments/all
 exports.getAll = async (req, res) => {
     try {
-        const appointments = await Appointment.find({ userId: req.userId }).sort({ date: -1, time: -1 });
-        const today = new Date().toISOString().split('T')[0];
-
+        const appointments = await Appointment.find({ userId: req.userId });
         const resolved = await resolveDoctorImages(appointments);
 
         const updated = resolved.map((appt) => {
-            if (appt.date < today && appt.status === 'Confirmed') {
+            if (appt.status === 'Confirmed' && isTimePast(appt.date, appt.time)) {
                 appt.status = 'Completed';
             }
             return appt;
+        });
+
+        updated.sort((a, b) => {
+            if (a.date !== b.date) return b.date.localeCompare(a.date);
+            return timeToMinutes(b.time) - timeToMinutes(a.time);
         });
 
         return res.json({ appointments: updated });

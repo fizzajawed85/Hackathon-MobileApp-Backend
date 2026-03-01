@@ -9,16 +9,24 @@ const userRoutes = require('./routes/user.routes');
 const recordsRoutes = require('./routes/records.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
 const notificationRoutes = require('./routes/notification.routes');
+const aiRoutes = require('./routes/ai.routes');
 
 const app = express();
 
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 
-// DB Connection (Bypassed for local JsonModel)
-// mongoose.connect(process.env.MONGO_URI)...
-console.log('✅ Local JSON Database Mode Active (Bypassing Atlas for Hackathon)');
+// DB Connection
+mongoose.connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds instead of hunging
+})
+    .then(() => console.log('✅ MongoDB Connected (Atlas)'))
+    .catch(err => {
+        console.error('❌ MongoDB Connection Error:', err.message);
+        console.log('⚠️ Falling back to Local JSON Database (Demo Mode)');
+    });
 
 // Routes
 app.get('/', (req, res) => {
@@ -41,6 +49,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/records', recordsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/ai', aiRoutes);
 
 app.get('/test', (req, res) => {
     const dbStatus = mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected';
@@ -50,7 +59,7 @@ app.get('/test', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Server running on http://0.0.0.0:${PORT}`));
 }
 
 module.exports = app;

@@ -27,13 +27,28 @@ exports.getProfile = async (req, res) => {
 // PUT /api/user/update
 exports.updateProfile = async (req, res) => {
     try {
-        const { username, phoneNumber, location, about } = req.body;
+        const { username, phoneNumber, location, about, profileImage, healthStats, medication } = req.body;
         const updateData = {
             ...(username !== undefined ? { username } : {}),
             ...(phoneNumber !== undefined ? { phoneNumber } : {}),
             ...(location !== undefined ? { location } : {}),
             ...(about !== undefined ? { about } : {}),
+            ...(profileImage !== undefined ? { profileImage } : {}),
         };
+
+        // Use dot notation for nested objects to avoid overwriting the entire object
+        if (healthStats) {
+            Object.keys(healthStats).forEach(key => {
+                updateData[`healthStats.${key}`] = healthStats[key];
+            });
+        }
+
+        if (medication) {
+            Object.keys(medication).forEach(key => {
+                updateData[`medication.${key}`] = medication[key];
+            });
+        }
+
 
         const updatedUser = await User.findByIdAndUpdate(
             req.userId,

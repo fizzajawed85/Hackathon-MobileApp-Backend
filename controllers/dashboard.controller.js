@@ -1,5 +1,46 @@
 const Appointment = require('../models/Appointment');
 const User = require('../models/User');
+const Doctor = require('../models/Doctor');
+
+const DEFAULT_DOCTOR_IMAGE =
+    'https://images.unsplash.com/photo-1559839734-2b71f1e3c77d?q=80&w=150&auto=format&fit=crop';
+
+const resolveDoctorImageUrl = async (doctorName, doctorImageUrl) => {
+    if (doctorImageUrl) return doctorImageUrl;
+    const doctor = await Doctor.findOne({ name: doctorName });
+    return doctor?.imageUrl || DEFAULT_DOCTOR_IMAGE;
+};
+
+const isTimePast = (dateStr, timeStr) => {
+    const now = new Date();
+    // Local-aware date string (YYYY-MM-DD)
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    if (dateStr < todayStr) return true;
+    if (dateStr > todayStr) return false;
+    try {
+        const [time, modifier] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+        if (modifier === 'PM' && hours < 12) hours += 12;
+        if (modifier === 'AM' && hours === 12) hours = 0;
+        const appointmentTime = new Date();
+        appointmentTime.setHours(hours, minutes, 0, 0);
+        return now > appointmentTime;
+    } catch (err) { return false; }
+};
+
+const timeToMinutes = (timeStr) => {
+    try {
+        const [time, modifier] = timeStr.split(' ');
+        let [hours, minutes] = time.split(':');
+        hours = parseInt(hours, 10);
+        minutes = parseInt(minutes, 10);
+        if (modifier === 'PM' && hours < 12) hours += 12;
+        if (modifier === 'AM' && hours === 12) hours = 0;
+        return hours * 60 + minutes;
+    } catch { return 0; }
+};
 
 exports.getDashboardData = async (req, res) => {
     try {
@@ -12,32 +53,28 @@ exports.getDashboardData = async (req, res) => {
         }
 
         // 2. Fetch Nearest Upcoming Appointment
-        const today = new Date().toISOString().split('T')[0];
-        const appointments = await Appointment.find({
+        const now = new Date();
+        const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+        let appointments = await Appointment.find({
             userId,
             date: { $gte: today },
             status: { $in: ['Confirmed', 'Pending'] }
         });
 
-        // Manually sort because json_db's sort is just a mock
+        // Filter out appointments where time has passed today
+        appointments = appointments.filter(appt => !isTimePast(appt.date, appt.time));
+
+        // Manually sort
         appointments.sort((a, b) => {
             if (a.date !== b.date) return a.date.localeCompare(b.date);
-            return a.time.localeCompare(b.time);
+            return timeToMinutes(a.time) - timeToMinutes(b.time);
         });
 
         const upcomingAppointment = appointments.length > 0 ? (typeof appointments[0].toObject === 'function' ? appointments[0].toObject() : { ...appointments[0] }) : null;
 
         // Resolve doctor image if missing
         if (upcomingAppointment && !upcomingAppointment.doctorImageUrl) {
-            try {
-                const Doctor = require('../models/Doctor');
-                const doctor = await Doctor.findOne({ name: upcomingAppointment.doctorName });
-                if (doctor && doctor.imageUrl) {
-                    upcomingAppointment.doctorImageUrl = doctor.imageUrl;
-                }
-            } catch (err) {
-                console.log('LOG Error resolving doctor image for dashboard:', err.message);
-            }
+            upcomingAppointment.doctorImageUrl = await resolveDoctorImageUrl(upcomingAppointment.doctorName, null);
         }
 
         // 3. Health Statistics from user document
@@ -56,6 +93,9 @@ exports.getDashboardData = async (req, res) => {
             time: user.medication?.time || '08:00 AM'
         };
 
+        // 5. Total Doctors Count
+        const doctorsCount = await Doctor.countDocuments();
+
         res.status(200).json({
             user: {
                 username: user.username,
@@ -63,7 +103,8 @@ exports.getDashboardData = async (req, res) => {
             },
             upcomingAppointment,
             statistics,
-            medication
+            medication,
+            doctorsCount
         });
     } catch (error) {
         console.error('❌ DASHBOARD ERROR:', error);
